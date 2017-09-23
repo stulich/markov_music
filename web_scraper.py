@@ -22,5 +22,23 @@ result = [x[6:-7] for x in result if x[0:6] == '<span>' and x[-7:]=='</span>']
 
 #joins elements to form one string
 result_string=" ".join(result)
-print(result_string)
 
+#gets title
+title=soup.find('h1',attrs={'itemprop':'name'})
+
+#makes sure inputs are correct
+title_bool=input('Does title look correct?(Y/N):\n'+ title.get_text())
+if(title_bool=='Y'):
+    pass
+else:
+    title=input('Please enter in correct title\n')
+
+note_bool=input('Do these notes look correct?(Y/N):\n'+ result_string)
+if(note_bool=='Y'):
+    pass
+else:
+    result_string=input('Please enter in correct notes\n')
+
+
+print(title)
+print(result_string)
