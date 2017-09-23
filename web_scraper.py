@@ -46,7 +46,7 @@ print(result_string)
 #logs to csv file with data
 new_row=[title, result_string]
 
-with open('music_notes.csv', 'w', newline='') as csvfile:
+with open('music_notes.csv', 'a', newline='') as csvfile:
     writer = csv.writer(csvfile)
     writer.writerow(new_row)
 
