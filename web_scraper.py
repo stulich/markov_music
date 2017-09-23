@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-
+import csv
 
 #takes in the webpage
 webpage= input('Enter in link to guitar tab followed by a space.\n')
@@ -25,20 +25,28 @@ result_string=" ".join(result)
 
 #gets title
 title=soup.find('h1',attrs={'itemprop':'name'})
-
+title=title.get_text()
 #makes sure inputs are correct
-title_bool=input('Does title look correct?(Y/N):\n'+ title.get_text())
+title_bool=input('Does title look correct?(Y/N):\n'+ title+'\n')
 if(title_bool=='Y'):
     pass
 else:
     title=input('Please enter in correct title\n')
 
-note_bool=input('Do these notes look correct?(Y/N):\n'+ result_string)
+note_bool=input('Do these notes look correct?(Y/N):\n'+ result_string+ '\n')
 if(note_bool=='Y'):
     pass
 else:
     result_string=input('Please enter in correct notes\n')
 
-
+print("The following will be entered into the csv:")
 print(title)
 print(result_string)
+
+#logs to csv file with data
+new_row=[title, result_string]
+
+with open('music_notes.csv', 'w', newline='') as csvfile:
+    writer = csv.writer(csvfile)
+    writer.writerow(new_row)
+
