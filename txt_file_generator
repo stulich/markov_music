@@ -1,0 +1,14 @@
+import csv
+with open('music_notes.csv', 'r') as csvfile:
+    file_read = csv.reader(csvfile, delimiter=' ', quotechar='|')
+    master_string=""
+    for row in file_read:
+        #the_notes=str(row).split(',')
+        the_notes=' '.join(row)
+        the_notes=the_notes.split(',')
+        master_string=master_string+the_notes[1]
+    print(master_string)
+
+the_text = open('music_notes.txt','w')
+the_text.write(master_string)
+the_text.close()
